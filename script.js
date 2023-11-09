@@ -10,6 +10,8 @@ canvas1.onpointerdown = function(e) {
     draw(e);
     firstTouch = false;
 
+    this.setPointerCapture(e.pointerId);
+
     this.onpointermove = draw;
 
     this.onpointerup = () => {
