@@ -1,19 +1,33 @@
 'use strict';
 
-canvas1.onpointerdown = (e) => {
+const canvas1 = document.getElementById('canvas1');
+let submitTimer = null;
+
+canvas1.onpointerdown = function(e) {
+    clearTimeout(submitTimer);
+
+    let firstTouch = true;
     draw(e);
+    firstTouch = false;
 
-    canvas1.onpointermove = draw;
+    this.onpointermove = draw;
 
-    canvas1.onpointerup = () => {
-        canvas1.onpointermove = () => false;
-        canvas1.onpointerup = () => false;
+    this.onpointerup = () => {
+        submitTimer = setTimeout(submit, 5e3);
+
+        this.onpointermove = () => false;
+        this.onpointerup = () => false;
     };
 
     function draw(e) {
         let canvasRect = canvas1.getBoundingClientRect();
         let ctx = canvas1.getContext('2d');
-        ctx.lineTo(e.clientX - canvasRect.left, e.clientY - canvasRect.top);
+        let x = e.clientX - canvasRect.left;
+        let y = e.clientY - canvasRect.top;
+
+        if (firstTouch) ctx.moveTo(x, y)
+        else ctx.lineTo(x, y);
+
         ctx.stroke();
     }
 };
@@ -50,8 +64,8 @@ async function submit() {
 
     // Получение ответа от сервера
     if (response.ok) {
-        console.log('Отправка рисунка прошла успешно');
-        alert('Отправка рисунка прошла успешно');
+        //console.log('Отправка рисунка прошла успешно');
+        //alert('Отправка рисунка прошла успешно');
     } else {
         console.log('Ошибка HTTP заголовка:' + response.status);
     }
