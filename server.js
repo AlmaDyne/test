@@ -1,6 +1,8 @@
 let http = require('http');
 let url = require('url');
 let querystring = require('querystring');
+let static = require('node-static');
+let fileServer = new static.Server('.');
 
 function onDigits(req, res) {
     res.writeHead(200, {
@@ -28,7 +30,7 @@ function onDigits(req, res) {
 }
 
 function accept(req, res) {
-    if (req.url == '/digits') {
+    if (req.url == '/') {
         onDigits(req, res);
         return;
     }

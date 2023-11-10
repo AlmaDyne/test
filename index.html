@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <script>
 let eventSource;
 
@@ -9,7 +10,7 @@ function start() { // когда нажата кнопка "Старт"
         return;
     }
 
-    eventSource = new EventSource('digits');
+    eventSource = new EventSource('/');
 
     eventSource.onopen = function(e) {
         log("Событие: open");
@@ -24,13 +25,14 @@ function start() { // когда нажата кнопка "Старт"
         }
     };
 
-    eventSource.addEventListener('bye', function(e) {
-        log("Событие: bye, данные: " + e.data);
-    });
-
     eventSource.onmessage = function(e) {
         log("Событие: message, данные: " + e.data);
     };
+
+    // Собственное событие сервера "bye" будет работать только через addEventListener
+    eventSource.addEventListener('bye', function(e) {
+        log("Событие: bye, данные: " + e.data);
+    });
 }
 
 function stop() { // когда нажата кнопка "Стоп"
