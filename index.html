@@ -10,7 +10,7 @@ function start() { // когда нажата кнопка "Старт"
         return;
     }
 
-    eventSource = new EventSource('/');
+    eventSource = new EventSource('digits');
 
     eventSource.onopen = function(e) {
         log("Событие: open");

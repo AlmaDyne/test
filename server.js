@@ -30,7 +30,7 @@ function onDigits(req, res) {
 }
 
 function accept(req, res) {
-    if (req.url == '/') {
+    if (req.url == '/digits') {
         onDigits(req, res);
         return;
     }
