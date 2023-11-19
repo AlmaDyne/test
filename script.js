@@ -56,7 +56,7 @@ async function submit() {
     //formData.set("image2", image2Blob, "wallpaper.png");
 
     // Генерация URL на https://webhook.site
-    let url = 'https://webhook.site/bdb77cf3-0e57-4c05-a5a8-7b0d643b7124';
+    let url = 'https://webhook.site/9c354858-d037-48e2-8e14-34f8ce6b59b3';
 
     // Отправление данные формы
     let response = await fetch(url, {
