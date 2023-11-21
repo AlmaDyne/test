@@ -2,9 +2,12 @@
 
 const url = 'https://webhook.site/9c354858-d037-48e2-8e14-34f8ce6b59b3';
 const canvas = document.getElementById('canvas');
-let formData = new FormData();
 let submitTimer = null;
 let exit = false;
+
+let formData = new FormData();
+formData.set("firstName", "John");
+formData.set("lastName", "Bauer");
 
 canvas.onpointerdown = function(e) {
     if (submitTimer) clearTimeout(submitTimer);
@@ -52,10 +55,7 @@ window.onunload = function() {
 
 async function createForm() {
     let imageBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-
-    formData.set("firstName", "John");
-    formData.set("lastName", "Bauer");
-    formData.set("image1", imageBlob, "drawing.png");
+    formData.set("image", imageBlob, "drawing.png");
 }
 
 async function submitForm() {
