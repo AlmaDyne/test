@@ -1,6 +1,6 @@
 'use strict';
 
-const url = 'https://webhook.site/9c354858-d037-48e2-8e14-34f8ce6b59b3';
+const url = 'https://webhook.site/3d397628-a455-4b27-9813-207eae814d29';
 const canvas = document.getElementById('canvas');
 let submitTimer = null;
 let exit = false;
